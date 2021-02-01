@@ -16,9 +16,7 @@ Vue.prototype.$http = http;
 Vue.prototype.$api = api;
 
 import SCSS from 'scss'
-import "./style/index.scss";  // 全局样式
-
-
+import "@styles/index.scss";  // 全局样式
 Vue.use(SCSS);
 
 
