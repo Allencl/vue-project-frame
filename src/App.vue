@@ -10,6 +10,7 @@
           <Menu />
         </el-aside>
         <el-main>
+          <Tabs />
           <div :style="`height:${documentHeight}px;`">
             <router-view></router-view>
           </div>
@@ -23,6 +24,7 @@
 <script>
 import Header from '@src/layout/header.vue';  // 头
 import Menu from '@src/layout/menu.vue';  // 菜单
+import Tabs from '@src/layout/tabs.vue';  // tabs
 
 
 
@@ -30,7 +32,8 @@ export default {
   name: 'App',
   components: { 
     Header, 
-    Menu
+    Menu,
+    Tabs
   },
   data() {
     return {
