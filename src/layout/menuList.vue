@@ -1,47 +1,31 @@
 <template>
-  <div>
-    <el-menu
-      default-active
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      unique-opened
-    >
-      <template v-for="(item) in menuList">
+    <span>
+        <template v-for="(o) in menus">
+            <el-submenu v-if="(o.children) && (o.children.length)" :index="o.id" :key="o.id">
+                <template slot="title">
+                    <i v-show="o.icon" :class="o.icon"></i>
+                    <span>{{o.name}}</span>
+                </template>
+                <menu-list :menus="o.children"></menu-list>
+            </el-submenu>
 
-        <el-menu-item 
-            v-if="(item.children) && (item.children.length>0)" 
-            :key="item.id" 
-            :index="item.id"
-        >
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>{{item.name}}</span>
-          </template>
-          <menu-sun :menuList="item.children"/>
-        </el-menu-item>
-
-
-        <el-submenu v-else :key="item.id">
-            <i class="el-icon-location"></i>
-            <span>{{item.name}}</span>
-        </el-submenu>
-
-
-      </template>
-    </el-menu>
-  </div>
+            <el-menu-item v-else :index="o.id" :key="o.id">
+                <i v-show="o.icon" :class="o.icon"></i>
+                <span>{{o.name}}</span>
+            </el-menu-item>
+        </template>
+    </span>
 </template>
 
 <script>
-import MenuSun from "@src/layout/menuList.vue";
+import MenuList from "@src/layout/menuList.vue";
 export default {
-  name: "MenuSun",
+  name: "MenuList",
   components: {
-    MenuSun
+    MenuList
   },
   props: {
-    menuList: {}
+    menus:{}
   }
 };
 </script>
