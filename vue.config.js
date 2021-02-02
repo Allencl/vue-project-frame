@@ -38,7 +38,7 @@ module.exports = {
                 '@styles':path.resolve('./src/styles'),
                 '@src':path.resolve('./src'),
                 '@assets':path.resolve('./src/assets'),
-
+                '@view':path.resolve('./view'),
             }
         }
     }

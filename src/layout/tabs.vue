@@ -5,14 +5,15 @@
         :tab-position="tabPosition" 
         @tab-click="handleClick"
     >
-        <el-tab-pane label="用户管理" name="first">
+        <el-tab-pane 
+            v-for="(o,i) in tabsList"
+            :key="i"
+            :label="o['label']" 
+            :name="o['name']"
+        >
             <router-view></router-view>
         </el-tab-pane>
-        <el-tab-pane label="配置管理" name="second">
-            <router-view></router-view>
-        </el-tab-pane>
-        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-        <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+
     </el-tabs>
 </template>
 <script>
@@ -27,6 +28,12 @@
       handleClick(tab, event) {
         console.log(tab, event);
       }
+    },
+    props:{
+        tabsList:{
+            type:Array,
+            default:()=>[]	      
+        }
     }
   };
 </script>

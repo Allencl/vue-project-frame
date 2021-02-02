@@ -10,5 +10,10 @@ export default {
       path: '/',
       component: Home
     },
+    {
+      name: 'page1',
+      path: '/page1',
+      component: import("@view/page1/index.vue")
+    },
   ]
 }

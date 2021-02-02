@@ -7,10 +7,12 @@
       </el-header>
       <el-container>
         <el-aside width="200px">
-          <Menu />
+          <Menu 
+            @addMenuHandle="addMenuHandle"
+          />
         </el-aside>
         <el-main>
-          <Tabs />
+          <Tabs :tabsList="tabsList" />
           <div :style="`height:${documentHeight}px;`">
             <router-view></router-view>
           </div>
@@ -38,6 +40,9 @@ export default {
   data() {
     return {
       documentHeight:document.documentElement.clientHeight-270,  // 窗口高度
+      
+      // 标签页
+      tabsList:[],
     }
   },
   mounted(){
@@ -46,6 +51,17 @@ export default {
           that.documentHeight=document.documentElement.clientHeight-270;  // 窗口高度
       };
   },  
+  methods:{
+    /**
+     * add 菜单
+     */
+    addMenuHandle: function(option){
+      this.tabsList=this.tabsList.concat([{
+        label:option["name"],
+        name:option["pathName"]
+      }]);
+    }
+  }
 }
 </script>
 
