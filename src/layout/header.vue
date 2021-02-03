@@ -1,16 +1,21 @@
 <template>
-    <header class="wis-header-container" :style="`height:${headerHeight}px`">
+    <header class="wis-header-container">
         <div class="left-box">
             <img :src="logo" alt="西息信息">
             <span class="text-content">西信信息</span>
         </div>
         <div  class="right-box">
-            <Avatar style="margin-top:14px;" :src="user" />
+            <Avatar style="" :src="user" />
 
-            <Dropdown>
-                <Icon type="md-settings" />
+            <Dropdown
+                placement="bottom-end"
+            >
+                <Icon class="head-more-icon" style="color:#fff" type="md-settings" />
                 <DropdownMenu slot="list">
-                    <DropdownItem>退出登录</DropdownItem>
+                    <DropdownItem>
+                        <Icon type="ios-log-out" style="margin-right:8px" />
+                        <span>退出登录</span>
+                    </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
         </div>
@@ -30,9 +35,25 @@
 </script>
 
 <style lang="scss">
+    .head-more-icon{
+        margin-left: 16px;
+        position: relative;
+        font-size: 26px;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        /* margin-top: 0px; */
+        top: 5px;
+        margin-right: 10px;
+    }
+
+    .ivu-layout-header{
+        padding: 0px 16px;
+    }
+
     .wis-header-container{
         background: #545c64;
         display:flex;
+        padding: 0px;
 
         >div{
             flex:1;
@@ -42,20 +63,21 @@
             text-align: left;
 
             img{
-                margin-left: 16px;
-                margin-top: 12px;
+                position: relative;
+                /* margin-top: 10px; */
+                top: 14px;
                 width: 80px;
-                float: left;
+        
             }
 
             .text-content{
-                float: left;
+     
                 color: #fff;
                 font-size: 16px;
                 display: inline-block;
                 font-weight: 500;
-                margin-top: 23px;
-                margin-left: 26px;
+                padding-left: 30px;
+
             }
         }
 

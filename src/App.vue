@@ -12,9 +12,18 @@
                     @addMenuHandle="addMenuHandle"
                   />
                 </Sider>
-                <Layout :style="{background:'#fff',padding:'0'}">
-                    <WisTabs />
-                    <Content :style="{padding: '8px 8px', minHeight: '280px', background: '#fff'}">
+                <Layout class="wis-content-container" 
+                  :style=" tabsArray ?
+                    {background:'#fff',padding:'46px 0px 0px 0px'}:
+                    {background:'#fff',padding:'0px 0px 0px 0px'}
+                  "
+                >
+                    <div class="wis-tabs-container">
+                      <WisTabs 
+
+                      />
+                    </div>
+                    <Content :style="{overflow:'auto',height:documentHeight+'px',padding: '8px 8px', minHeight: '280px', background: '#fff'}">
                       <keep-alive>
                         <router-view v-if='$route.meta.keepAlive'></router-view>
                       </keep-alive>
@@ -41,23 +50,42 @@ export default {
     WisMenu,
     WisTabs
   },
-  data() {
+  data(_this) {
     return {
-      documentHeight:document.documentElement.clientHeight-270,  // 窗口高度
-
+      documentHeight:document.documentElement.clientHeight-(_this.tabsArray?116:68),  // 窗口高度
     }
   },
+  computed: {
+    tabsArray(){
+      return this.$store.state.storeTabs.tbasList["length"];
+    }     
+  },   
+  watch:{
+    // 监听 tabs
+    "$store.state.storeTabs.tbasList"(val){
+      this.updataWindow();
+    },
+  },   
   created(){
     this.$router.push({name:'home',params:{}});
+
+    var that=this;
+
+    window.onresize = function(){ 
+      that.updataWindow();
+    };
+
   },
   mounted(){
-      var that=this;
 
-      window.onresize = function(){ 
-        that.documentHeight=document.documentElement.clientHeight-270;  // 窗口高度
-      };
   },  
   methods:{
+    /**
+     * 刷新
+     */
+    updataWindow: function(){
+      this.documentHeight=document.documentElement.clientHeight-(this.tabsArray?116:68);  // 窗口高度
+    },
     /**
      * add 菜单
      */
@@ -75,5 +103,16 @@ export default {
 </script>
 
 <style lang="scss">
-
+  .wis-content-container{
+    width: 100%;
+    position: relative;
+    
+    .wis-tabs-container{
+      width: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px; 
+      height: 46px;
+    }
+  }
 </style>

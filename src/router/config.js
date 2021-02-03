@@ -23,6 +23,18 @@ export default {
       path: '/page3',
       meta:{title:'示例页面2',keepAlive:true},
       component: ()=> import("@view/page3/index.vue")
-    },     
+    }, 
+    
+    // 这个要放在最后
+    {
+      name: '404',
+      path: '/404',
+      meta:{title:'404',keepAlive:true},
+      component: ()=> import("@src/router/404.vue")
+    }, 
+    {
+      path:"*",
+      redirect:"/404"
+    } 
   ]
 }

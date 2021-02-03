@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div style="height:100%">
         <Menu
             width="auto"
+            style="height:100%"
             @on-select="selectHandle"
         >
             <menu-sun :menus="menuList"/>
@@ -46,7 +47,6 @@ export default {
                             icon:"logo-buffer",
                             pathName:"page3"            
                         },
-
                     ]
                 }
             ]

@@ -16,7 +16,7 @@ export default {
 
 
 			// 限制个数
-			if(state.tbasList["length"]>=10){
+			if(state.tbasList["length"]>=7){
 				that.$Message.warning(that.$t('global.tabsNumlimit'));
 				return;
 			}

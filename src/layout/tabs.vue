@@ -1,7 +1,7 @@
 <template>
     <span 
       v-if="tabsArray['length']"
-      style="padding: 12px 12px 0px 12px;display:inline-block;padding-left:46px;position: relative;}"
+      style="width:100%;padding: 12px 12px 0px 12px;display:inline-block;padding-left:46px;position: relative;}"
     >
       <span style="display:inline-block;position: absolute;top: 10px;left: 5px;">
         <Button style="border: none;background: inherit;" size="large" icon="ios-home-outline"></Button>
