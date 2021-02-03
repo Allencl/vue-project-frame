@@ -47,10 +47,14 @@ export default {
 
     }
   },
+  created(){
+    this.$router.push({name:'home',params:{}});
+  },
   mounted(){
       var that=this;
+
       window.onresize = function(){ 
-          that.documentHeight=document.documentElement.clientHeight-270;  // 窗口高度
+        that.documentHeight=document.documentElement.clientHeight-270;  // 窗口高度
       };
   },  
   methods:{
@@ -65,8 +69,8 @@ export default {
         name:option["pathName"],
         icon:option["icon"]
       });
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -10,7 +10,7 @@
             }
         },
         created(){
-            console.log("刷新了111");
+            // console.log("刷新了111");
         }
     }
 </script>

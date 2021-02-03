@@ -27,9 +27,7 @@ export default {
 			}
 
 			that.$router.push({name:option["name"],params:{}});
-			state.tabsActiveName=option["name"];
-
-			
+			state.tabsActiveName=option["name"];			
 		},
 		/**
 		 * 删除 tabs
