@@ -11,7 +11,6 @@
             :label="o['label']" 
             :name="o['name']"
         >
-            <router-view></router-view>
         </el-tab-pane>
 
     </el-tabs>
@@ -21,12 +20,13 @@
     data() {
       return {
         tabPosition: 'top',  
-        activeName: 'second',
+        // 显示 菜单
+        activeName: '',
       };
     },
     methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
+      handleClick: function(tabs){
+        this.$router.push({name:tabs["name"],params:{}});
       }
     },
     props:{

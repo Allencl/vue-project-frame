@@ -8,7 +8,10 @@
         data () {
             return {
             }
-        }
+        },
+        created(){
+            console.log("刷新了222");
+        }        
     }
 </script>
 

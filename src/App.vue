@@ -14,7 +14,12 @@
         <el-main>
           <Tabs :tabsList="tabsList" />
           <div :style="`height:${documentHeight}px;`">
-            <router-view></router-view>
+
+            <keep-alive>
+              <router-view v-if='$route.meta.keepAlive'></router-view>
+            </keep-alive>
+            <router-view v-if='!$route.meta.keepAlive'></router-view>
+
           </div>
         </el-main>
       </el-container>

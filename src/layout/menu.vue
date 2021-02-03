@@ -28,7 +28,8 @@ export default {
                         {
                             id:"1-1",
                             name: "页面示例1", 
-                            icon:"el-icon-bell"            
+                            icon:"el-icon-bell",
+                            pathName:"page1"            
                         },
                         {
                             name: "二级菜单",
@@ -37,7 +38,8 @@ export default {
                                 {
                                     name: "示例页面2", 
                                     id: "1-2-1",
-                                    icon:"el-icon-star-off"            
+                                    icon:"el-icon-star-off",
+                                    pathName:"page2"            
                                 }
                             ]
                         },

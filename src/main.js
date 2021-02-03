@@ -19,6 +19,13 @@ import SCSS from 'scss'
 import "@styles/index.scss";  // 全局样式
 Vue.use(SCSS);
 
+import Vuex from 'vuex';
+import LocalStore from './store';
+
+let WisStore = new Vuex.Store({
+  // strict: process.env.NODE_ENV !== 'PRD', //在非生产环境下，使用严格模式
+  modules: LocalStore
+});
 
 
 const originalPush = VueRouter.prototype.push;
@@ -32,6 +39,7 @@ const router = new VueRouter(routerConfig);
 Vue.config.productionTip = false;
 
 new Vue({
+  WisStore,
   router,
   render: h => h(App)
 }).$mount('#app');
