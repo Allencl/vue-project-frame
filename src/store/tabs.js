@@ -4,6 +4,7 @@
 
 export default {
 	state: {
+		tabsActiveName:"",  // 选中 名
         tbasList:[],   // tabs 列表
 	},
 	mutations: {
@@ -13,16 +14,21 @@ export default {
 		addTabs: function(state,option){
 			let that=option["_this"];
 
+
 			// 限制个数
 			if(state.tbasList["length"]>=10){
 				that.$Message.warning(that.$t('global.tabsNumlimit'));
+				return;
 			}
 
 			// 去重
 			if( !state.tbasList.filter((o)=>o["name"]==option["name"])["length"] ){
 				state.tbasList=state.tbasList.concat([option]);
-				that.$router.push({name:option["name"],params:{}});
 			}
+
+			that.$router.push({name:option["name"],params:{}});
+			state.tabsActiveName=option["name"];
+
 			
 		},
 		/**
@@ -31,7 +37,13 @@ export default {
 		removeTabs: function(state,callBack){
 			let index=callBack();
 			state.tbasList=state.tbasList.filter((o,i)=>i!=index);
-		},		
+		},
+		/**
+		 *  select
+		*/	
+		selectTabs: function(state,name){
+			state.tabsActiveName=name;
+		},			
 	},
 	actions: {
 		addTabs(context,agrs){
@@ -39,6 +51,9 @@ export default {
 		},
 		removeTabs(context,agrs){
 			context.commit("removeTabs",agrs);
+		},
+		selectTabs(context,agrs){
+			context.commit("selectTabs",agrs);
 		},
 	}
 }

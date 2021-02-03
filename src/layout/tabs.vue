@@ -1,34 +1,48 @@
 <template>
-
-    <Tabs
-      v-model="activeName"
-      closable
-      type="card"
-      :before-remove="beforeRemove"
-      @on-click="changeTabHandle"
+    <span 
+      v-if="tabsArray['length']"
+      style="padding: 12px 12px 0px 12px;display:inline-block;padding-left:46px;position: relative;}"
     >
-      <TabPane 
-        v-for="(o,i) in tabsArray"
-        :key="i"
-        :label="o['label']" 
-        :name="o['name']"        
-        :icon="o['icon']"
-      />
-    </Tabs>
+      <span style="display:inline-block;position: absolute;top: 10px;left: 5px;">
+        <Button style="border: none;background: inherit;" size="large" icon="ios-home-outline"></Button>
+      </span>
+      <Tabs
+        v-model="tabsActiveName"
+        closable
+        type="card"
+        :before-remove="beforeRemove"
+        @on-click="changeTabHandle"
+      >
+        <TabPane 
+          v-for="(o,i) in tabsArray"
+          :key="i"
+          :label="o['label']" 
+          :name="o['name']"        
+          :icon="o['icon']"
+        />
+        <div slot="extra">
+          <span v-if="tabsArray['length']" class="tabs-mark-box">
+            <Badge :count="'页面数量: '+tabsArray['length']"></Badge>
+          </span>
+        </div>
+      </Tabs>
+    </span>
+
 </template>
 <script>
   export default {
     data() {
       return {
-        tabPosition: 'top',  
-        // 显示 菜单
-        activeName: '',
+
       };
     },
 		computed: {
 			tabsArray(){
 				return this.$store.state.storeTabs.tbasList;
-			},
+      },
+			tabsActiveName(){
+				return this.$store.state.storeTabs.tabsActiveName;
+			},      
 		},    
     methods: {
       /**
@@ -48,8 +62,12 @@
         this.$store.dispatch("removeTabs",function(){
                  
           if(_index!=newList["length"]){
-            that.activeName=newList[_index]["name"];
-            that.$router.push({name:that.activeName,params:{}});
+            that.$store.dispatch("selectTabs",newList[_index]["name"]);
+
+            that.$router.push({
+              name:that.$store.state.storeTabs.tabsActiveName,
+              params:{}}
+            );
           }else{
             // to home
             that.$router.push({name:"home",params:{}});
@@ -66,3 +84,11 @@
     }
   };
 </script>
+<style lang="scss">
+  .tabs-mark-box{
+    .ivu-badge-count-alone{
+      background:#2d8cf0
+    }
+  }
+</style>
+

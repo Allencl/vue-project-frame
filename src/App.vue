@@ -12,9 +12,9 @@
                     @addMenuHandle="addMenuHandle"
                   />
                 </Sider>
-                <Layout :style="{padding: '0 24px 24px'}">
+                <Layout :style="{background:'#fff',padding:'0'}">
                     <WisTabs />
-                    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                    <Content :style="{padding: '8px 8px', minHeight: '280px', background: '#fff'}">
                       <keep-alive>
                         <router-view v-if='$route.meta.keepAlive'></router-view>
                       </keep-alive>
