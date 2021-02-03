@@ -1,46 +1,45 @@
 <template>
   <div id="app">
 
-    <el-container>
-      <el-header style="height: inherit;padding:0px">
-        <Header />
-      </el-header>
-      <el-container>
-        <el-aside width="200px">
-          <Menu 
-            @addMenuHandle="addMenuHandle"
-          />
-        </el-aside>
-        <el-main>
-          <Tabs />
-          <div :style="`height:${documentHeight}px;`">
-
-            <keep-alive>
-              <router-view v-if='$route.meta.keepAlive'></router-view>
-            </keep-alive>
-            <router-view v-if='!$route.meta.keepAlive'></router-view>
-
-          </div>
-        </el-main>
-      </el-container>
-    </el-container>
-
+    <div class="layout">
+        <Layout>
+            <Header>
+              <WisHeader />
+            </Header>
+            <Layout>
+                <Sider hide-trigger :style="{background: '#fff'}">
+                  <WisMenu 
+                    @addMenuHandle="addMenuHandle"
+                  />
+                </Sider>
+                <Layout :style="{padding: '0 24px 24px'}">
+                    <WisTabs />
+                    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                      <keep-alive>
+                        <router-view v-if='$route.meta.keepAlive'></router-view>
+                      </keep-alive>
+                      <router-view v-if='!$route.meta.keepAlive'></router-view>
+                    </Content>
+                </Layout>
+            </Layout>
+        </Layout>
+    </div>
   </div>
 </template>
 
 <script>
-import Header from '@src/layout/header.vue';  // 头
-import Menu from '@src/layout/menu.vue';  // 菜单
-import Tabs from '@src/layout/tabs.vue';  // tabs
+import WisHeader from '@src/layout/header.vue';  // 头
+import WisMenu from '@src/layout/menu.vue';  // 菜单
+import WisTabs from '@src/layout/tabs.vue';  // tabs
 
 
 
 export default {
   name: 'App',
   components: { 
-    Header, 
-    Menu,
-    Tabs
+    WisHeader, 
+    WisMenu,
+    WisTabs
   },
   data() {
     return {

@@ -46,7 +46,7 @@
         let _index=(index-1>=0)?index-1:index+1;
 
         this.$store.dispatch("removeTabs",function(){
-                  
+                 
           if(_index!=newList["length"]){
             that.activeName=newList[_index]["name"];
             that.$router.push({name:that.activeName,params:{}});

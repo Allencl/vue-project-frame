@@ -1,7 +1,7 @@
 export default {
   routes: [
     {
-      name: 'Home',
+      name: 'home',
       path: '/',
       meta:{title:'首页',keepAlive:true},
       component: ()=> import("@src/layout/home.vue"),
