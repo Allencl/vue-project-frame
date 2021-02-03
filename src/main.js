@@ -9,6 +9,10 @@ import routerConfig from './router/config.js'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+Vue.use(ViewUI);
+
 import http from './api/http'
 import api from './api/api'
 
@@ -19,13 +23,25 @@ import SCSS from 'scss'
 import "@styles/index.scss";  // 全局样式
 Vue.use(SCSS);
 
-import Vuex from 'vuex';
-import LocalStore from './store';
+import store from './store/index.js';
 
-let WisStore = new Vuex.Store({
-  // strict: process.env.NODE_ENV !== 'PRD', //在非生产环境下，使用严格模式
-  modules: LocalStore
+// 多语言
+import VueI18n from 'vue-i18n'; 
+import LocalI18n from './locale/index.js';
+
+import en from 'view-design/dist/locale/en-US';
+import zh from 'view-design/dist/locale/zh-CN';
+Vue.use(VueI18n);
+
+const messages = {
+  en: Object.assign(en,LocalI18n.en),
+  zh: Object.assign(zh,LocalI18n.zh)
+};
+const i18n = new VueI18n({
+  locale: 'zh',  // set locale
+  messages  // set locale messages
 });
+
 
 
 const originalPush = VueRouter.prototype.push;
@@ -37,9 +53,9 @@ Vue.use(VueRouter);
 const router = new VueRouter(routerConfig);
 
 Vue.config.productionTip = false;
-
 new Vue({
-  WisStore,
+  i18n,
+  store,
   router,
   render: h => h(App)
 }).$mount('#app');

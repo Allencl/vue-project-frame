@@ -18,5 +18,11 @@ export default {
       meta:{title:'示例页面2',keepAlive:true},
       component: ()=> import("@view/page2/index.vue")
     },    
+    {
+      name: 'page3',
+      path: '/page3',
+      meta:{title:'示例页面2',keepAlive:true},
+      component: ()=> import("@view/page3/index.vue")
+    },     
   ]
 }

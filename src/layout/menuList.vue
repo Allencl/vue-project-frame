@@ -1,23 +1,26 @@
 <template>
     <span>
         <template v-for="(o) in menus">
-            <el-submenu v-if="(o.children) && (o.children.length)" :index="o.id" :key="o.id">
+            <Submenu  
+                v-if="(o.children) && (o.children.length)" 
+                :name="o.id" 
+                :key="o.id"
+            >
                 <template slot="title">
                     <i v-show="o.icon" :class="o.icon"></i>
                     <span>{{o.name}}</span>
                 </template>
                 <menu-list :menus="o.children"></menu-list>
-            </el-submenu>
+            </Submenu>
 
-            <el-menu-item 
+            <MenuItem  
                 v-else 
-                :index="o.id" 
+                :name="o" 
                 :key="o.id"
-                :route="o"
             >
-                <i v-show="o.icon" :class="o.icon"></i>
+                <Icon v-show="o.icon" :type="o.icon" />
                 <span>{{o.name}}</span>
-            </el-menu-item>
+            </MenuItem >
         </template>
     </span>
 </template>

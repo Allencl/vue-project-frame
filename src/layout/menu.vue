@@ -1,14 +1,11 @@
 <template>
     <div>
-        <el-menu
-            class="el-menu-vertical-demo"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-            @select="selectHandle"
+        <Menu
+            width="auto"
+            @on-select="selectHandle"
         >
             <menu-sun :menus="menuList"/>
-        </el-menu>
+        </Menu>
     </div>
 </template>
 <script>
@@ -28,7 +25,7 @@ export default {
                         {
                             id:"1-1",
                             name: "页面示例1", 
-                            icon:"el-icon-bell",
+                            icon:"logo-buffer",
                             pathName:"page1"            
                         },
                         {
@@ -38,11 +35,18 @@ export default {
                                 {
                                     name: "示例页面2", 
                                     id: "1-2-1",
-                                    icon:"el-icon-star-off",
+                                    icon:"ios-analytics",
                                     pathName:"page2"            
                                 }
                             ]
                         },
+                        {
+                            id:"1-3",
+                            name: "页面示例3", 
+                            icon:"logo-buffer",
+                            pathName:"page3"            
+                        },
+
                     ]
                 }
             ]
@@ -52,8 +56,8 @@ export default {
         /**
          * 菜单 点击
          */
-        selectHandle: function(...option){
-            this.$emit("addMenuHandle",option[2]["route"]);
+        selectHandle: function(option){
+            this.$emit("addMenuHandle",option);
         }
     }
 };

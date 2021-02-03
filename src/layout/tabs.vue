@@ -1,19 +1,20 @@
 <template>
-    <el-tabs 
-        v-model="activeName"
-        closable
-        :tab-position="tabPosition" 
-        @tab-click="handleClick"
-    >
-        <el-tab-pane 
-            v-for="(o,i) in tabsList"
-            :key="i"
-            :label="o['label']" 
-            :name="o['name']"
-        >
-        </el-tab-pane>
 
-    </el-tabs>
+    <Tabs
+      v-model="activeName"
+      closable
+      type="card"
+      :before-remove="beforeRemove"
+      @on-click="changeTabHandle"
+    >
+      <TabPane 
+        v-for="(o,i) in tabsArray"
+        :key="i"
+        :label="o['label']" 
+        :name="o['name']"        
+        :icon="o['icon']"
+      />
+    </Tabs>
 </template>
 <script>
   export default {
@@ -24,16 +25,44 @@
         activeName: '',
       };
     },
+		computed: {
+			tabsArray(){
+				return this.$store.state.storeTabs.tbasList;
+			},
+		},    
     methods: {
-      handleClick: function(tabs){
-        this.$router.push({name:tabs["name"],params:{}});
-      }
+      /**
+       * tab change
+       */
+      changeTabHandle: function(tabs){
+        this.$router.push({name:tabs,params:{}});
+      },
+      /**
+       * 删除
+       */      
+      beforeRemove:function(index){
+        let that=this;
+        let newList=this.$store.state.storeTabs.tbasList;
+        let _index=(index-1>=0)?index-1:index+1;
+
+        this.$store.dispatch("removeTabs",function(){
+                  
+          if(_index!=newList["length"]){
+            that.activeName=newList[_index]["name"];
+            that.$router.push({name:that.activeName,params:{}});
+          }else{
+            // to home
+            that.$router.push({name:"home",params:{}});
+          }
+         
+          return index;
+        });
+        return (new Promise((resolve, reject)=>{}));
+      },
+
     },
     props:{
-        tabsList:{
-            type:Array,
-            default:()=>[]	      
-        }
+
     }
   };
 </script>

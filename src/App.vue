@@ -12,7 +12,7 @@
           />
         </el-aside>
         <el-main>
-          <Tabs :tabsList="tabsList" />
+          <Tabs />
           <div :style="`height:${documentHeight}px;`">
 
             <keep-alive>
@@ -45,9 +45,7 @@ export default {
   data() {
     return {
       documentHeight:document.documentElement.clientHeight-270,  // 窗口高度
-      
-      // 标签页
-      tabsList:[],
+
     }
   },
   mounted(){
@@ -61,10 +59,13 @@ export default {
      * add 菜单
      */
     addMenuHandle: function(option){
-      this.tabsList=this.tabsList.concat([{
+      let that=this;
+      this.$store.dispatch("addTabs",{
+        _this:that,
         label:option["name"],
-        name:option["pathName"]
-      }]);
+        name:option["pathName"],
+        icon:option["icon"]
+      });
     }
   }
 }

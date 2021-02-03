@@ -5,18 +5,14 @@
             <span class="text-content">西信信息</span>
         </div>
         <div  class="right-box">
-            <el-dropdown style="margin-right: 20px;float:right;margin-top: 20px;">
-                <span class="el-dropdown-link" style="cursor: pointer;font-size: 20px;color:#fff">
-                    <i class="el-icon-setting el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>
-                        <i class="el-icon-s-fold"></i>
-                        退出登录
-                    </el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-            <el-avatar size="medium" :src="user" style="margin-top: 14px;margin-right: 16px;float: right;"></el-avatar>
+            <Avatar style="margin-top:14px;" :src="user" />
+
+            <Dropdown>
+                <Icon type="md-settings" />
+                <DropdownMenu slot="list">
+                    <DropdownItem>退出登录</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
         </div>
     </header>
 </template>
