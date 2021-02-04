@@ -17,10 +17,14 @@
                 </FormItem>
             </i-col>            
         </Row> 
-        <FormItem>
-            <Button type="primary" @click="handleSubmit">查询</Button>
-            <Button @click="handleReset" style="margin-left: 8px">重置</Button>
-        </FormItem>
+        <Row>
+            <i-col span="24">
+                <FormItem>
+                    <Button type="primary" @click="handleSubmit">查询</Button>
+                    <Button @click="handleReset" style="margin-left: 8px">重置</Button>
+                </FormItem>
+            </i-col>
+        </Row> 
     </Form>
 </template>
 <script>

@@ -1,7 +1,9 @@
 <template>
     <header class="wis-header-container">
         <div class="left-box">
-            <img :src="logo" alt="西息信息">
+            <router-link :to="{name:'home'}">
+                <img :src="logo" alt="西息信息">
+            </router-link>
             <span class="text-content">西信信息</span>
         </div>
         <div  class="right-box">
@@ -51,7 +53,7 @@
     }
 
     .wis-header-container{
-        background: #545c64;
+ 
         display:flex;
         padding: 0px;
 

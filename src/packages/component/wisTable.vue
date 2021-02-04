@@ -3,10 +3,14 @@
         <div class="search-component">
             <slot name="search-container"></slot>
         </div>
-        <div>
+        <div class="button-component">
+            <slot name="button-container"></slot>
+        </div>
+        <div class="search-table">
             <Table 
                 :columns="columns" 
                 :data="data"
+                stripe
             >
             </Table>            
         </div> 
@@ -79,7 +83,15 @@
 <style lang="scss">
     .wis-component-table{
         .search-component{
-            padding-top: 12px;
+            >form{
+                padding-top: 12px;
+            }
+        }
+
+        .button-component{
+            button{
+                margin: 8px 8px 12px 0px;
+            }
         }
 
         .page-component{
