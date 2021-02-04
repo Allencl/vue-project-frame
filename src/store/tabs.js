@@ -4,6 +4,7 @@
 
 export default {
 	state: {
+		maxNum:7, // 最大数
 		tabsActiveName:"",  // 选中 名
         tbasList:[],   // tabs 列表
 	},
@@ -16,7 +17,7 @@ export default {
 
 
 			// 限制个数
-			if(state.tbasList["length"]>=7){
+			if(state.tbasList["length"]>=state.maxNum){
 				that.$Message.warning(that.$t('global.tabsNumlimit'));
 				return;
 			}

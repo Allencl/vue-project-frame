@@ -20,7 +20,14 @@ import SCSS from 'scss'
 import "@styles/index.scss";  // 全局样式
 Vue.use(SCSS);
 
+
+// store
 import store from './store/index.js';
+
+// 全局组件
+import GlobalComponents from './packages/index.js'
+// Vue.use(GlobalComponents);
+
 
 // 多语言
 import VueI18n from 'vue-i18n'; 

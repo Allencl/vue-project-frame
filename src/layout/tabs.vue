@@ -23,8 +23,8 @@
           :icon="o['icon']"
         />
         <div slot="extra">
-          <span v-if="tabsArray['length']" class="tabs-mark-box">
-            <Badge :count="'页面数量: '+tabsArray['length']"></Badge>
+          <span v-if="tabsArray['length']" :class="`tabs-mark-box ${tabsArray['length']>=maxNum?'warning':''}`">
+            <Badge :count="'标签数量: '+tabsArray['length']"></Badge>
           </span>
         </div>
       </Tabs>
@@ -44,7 +44,10 @@
       },
 			tabsActiveName(){
 				return this.$store.state.storeTabs.tabsActiveName;
-			},      
+      },  
+      maxNum(){
+				return this.$store.state.storeTabs.maxNum;
+      }    
 		},    
     methods: {
       /**
@@ -93,6 +96,12 @@
 </script>
 <style lang="scss">
   .tabs-mark-box{
+    &.warning{
+      .ivu-badge-count-alone{
+        background:#f90;
+      }  
+    }
+
     .ivu-badge-count-alone{
       background:#2d8cf0
     }
