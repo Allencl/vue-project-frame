@@ -33,6 +33,9 @@ module.exports = {
             }
     },
       configureWebpack:{
+        performance: {
+		    hints:false
+	    },
         resolve:{
             alias:{
                 '@styles':path.resolve('./src/styles'),
