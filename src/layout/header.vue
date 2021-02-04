@@ -1,9 +1,9 @@
 <template>
     <header class="wis-header-container">
         <div class="left-box">
-            <router-link :to="{name:'home'}">
-                <img :src="logo" alt="西息信息">
-            </router-link>
+   
+            <img :src="logo" alt="西息信息" @click="toHome">
+   
             <span class="text-content">西信信息</span>
         </div>
         <div  class="right-box">
@@ -31,6 +31,13 @@
                 logo: require("@assets/images/logo-header.png"), // logo
                 user: require("@assets/images/user.png"), // logo
 
+            }
+        },
+        methods:{
+            // to home
+            toHome: function(){
+                this.$store.dispatch("removeTabsAll",{});
+                this.$router.push({name:'home',params:{}});
             }
         }
     }
