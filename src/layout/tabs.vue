@@ -4,7 +4,9 @@
       style="width:100%;padding: 12px 12px 0px 12px;display:inline-block;padding-left:46px;position: relative;}"
     >
       <span style="display:inline-block;position: absolute;top: 10px;left: 5px;">
-        <Button style="border: none;background: inherit;" size="large" icon="ios-home-outline"></Button>
+        <Button 
+          @click="toHome"
+        style="border: none;background: inherit;" size="large" icon="ios-home-outline"></Button>
       </span>
       <Tabs
         v-model="tabsActiveName"
@@ -77,6 +79,11 @@
         });
         return (new Promise((resolve, reject)=>{}));
       },
+      toHome: function(){
+        
+        this.$store.dispatch("removeTabsAll",{});
+        this.$router.push({name:'home',params:{}});
+      }
 
     },
     props:{

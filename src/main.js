@@ -9,11 +9,12 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 Vue.use(ViewUI);
 
-import http from './api/http'
-import api from './api/api'
-
+import http from './http/index';
+import utils from './utils/index';
 Vue.prototype.$http = http;
-Vue.prototype.$api = api;
+Vue.prototype.$utils = utils;
+
+
 
 import SCSS from 'scss'
 import "@styles/index.scss";  // 全局样式

@@ -41,7 +41,14 @@ export default {
 		*/	
 		selectTabs: function(state,name){
 			state.tabsActiveName=name;
-		},			
+		},	
+		/**
+		 * 清空
+		*/
+		removeTabsAll: function(state,name){
+			state.tbasList=[];
+		},
+
 	},
 	actions: {
 		addTabs(context,agrs){
@@ -49,6 +56,9 @@ export default {
 		},
 		removeTabs(context,agrs){
 			context.commit("removeTabs",agrs);
+		},
+		removeTabsAll(context,agrs){
+			context.commit("removeTabsAll",agrs);
 		},
 		selectTabs(context,agrs){
 			context.commit("selectTabs",agrs);
