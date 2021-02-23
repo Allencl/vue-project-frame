@@ -3,7 +3,7 @@
         <Drawer
             v-model="value"
             title="编辑"
-            width="960"
+            width="90%"
             draggable 
             @on-close="cancelHandle"
         >
@@ -14,16 +14,38 @@
                 :label-width="120"
             >
                 <Row>
-                    <i-col span="12">
-                        <FormItem label="Name" prop="name" label-position="top">
-                            <Input v-model="formData.name" placeholder="请输入姓名" />
+                    <i-col span="6">
+                        <FormItem label="文本框" prop="name" label-position="top">
+                            <Input 
+                                v-model="formData.name" 
+                                clearable
+                                placeholder="请输入" 
+                                :maxlength="30"
+                                show-word-limit
+                            />
                         </FormItem>
                     </i-col>
-                    <i-col span="12">
-                        <FormItem label="年龄" prop="age" label-position="top">
-                            <Input v-model="formData.age" placeholder="请输入年龄" />
+                    <i-col span="6">
+                        <FormItem label="只读" prop="readonly" label-position="top">
+                            <Input 
+                                v-model="formData.readonly" 
+                                readonly
+                                disabled
+                            />
                         </FormItem>
-                    </i-col>                    
+                    </i-col>     
+                    <i-col span="6">
+                        <FormItem label="多行文本" prop="textarea" label-position="top">
+                            <Input 
+                                v-model="formData.readonly" 
+                                type="textarea"
+                                :rows="4"
+                            />
+                        </FormItem>
+
+                    </i-col>      
+                    <i-col span="6">
+                    </i-col>                 
                 </Row>
             </Form>
             <div class="demo-drawer-footer">
@@ -42,16 +64,16 @@
         data () {
             return {
                 // 表单数据
-                formData: {},
+                formData: {
+                    readonly:"这是一个只读的文本框"
+                },
 
                 // 表单校验
                 ruleValidate: {
                     name: [
                         { required:true,message:'该项必填！',trigger:'blur'}
                     ],
-                    age: [
-                        { required:true,message:'该项必填！',trigger:'blur'}
-                    ],                    
+                    
                 }
             }
         },
@@ -69,7 +91,7 @@
              * 提交 |保存
              */
             submitHandle:function(){
-
+                console.log( this.formData );
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
                         this.$emit("submit",this.formData);
